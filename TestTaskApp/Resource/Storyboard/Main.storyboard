@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main Controller-->
+        <!--Просмотр-->
         <scene sceneID="nc8-AX-go7">
             <objects>
                 <tableViewController id="LD9-YO-dBQ" customClass="MainController" customModule="TestTaskApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,12 +22,12 @@
                             <outlet property="delegate" destination="LD9-YO-dBQ" id="OVL-Ha-N1I"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="fle-iN-Bgs">
+                    <navigationItem key="navigationItem" title="Просмотр" id="fle-iN-Bgs">
                         <barButtonItem key="rightBarButtonItem" id="z4x-Bu-8gD">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JiT-16-aRp">
-                                <rect key="frame" x="229" y="7" width="130" height="30"/>
+                                <rect key="frame" x="244" y="7" width="115" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <state key="normal" title="Редактировать"/>
                                 <connections>
                                     <action selector="tapOnEdit:" destination="LD9-YO-dBQ" eventType="touchUpInside" id="gmR-Km-MWs"/>

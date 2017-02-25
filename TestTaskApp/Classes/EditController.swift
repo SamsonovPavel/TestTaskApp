@@ -8,7 +8,22 @@
 
 import UIKit
 
-class EditController: ParentClass {}
+class EditController: ParentClass {
+    var picker : UIPickerView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.estimatedRowHeight = 50.0
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+        navigationItem.title = "Редактирование"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить",
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(saveContent))
+    }
+}
 
 // MARK:- UITableViewDataSource
 extension EditController {
@@ -44,6 +59,7 @@ extension EditController {
 
 extension EditController {
     func configureFirstNameCell(cell: FirstNameCell, indexPath: IndexPath) {
+        cell.textView.delegate = self
         
         //        let string = userDefault.value(forKey: firstNameKey) as? String
         //
@@ -55,6 +71,8 @@ extension EditController {
     }
     
     func configureLastNameCell(cell: LastNameCell, indexPath: IndexPath) {
+        cell.textView.delegate = self
+        
         //        let string = userDefault.value(forKey: lastNameKey) as? String
         //
         //        if let text = string {
@@ -65,6 +83,8 @@ extension EditController {
     }
     
     func configurePatronymicCell(cell: PatronymicCell, indexPath: IndexPath) {
+        cell.textView.delegate = self
+        
         //        let string = userDefault.value(forKey: patronymicKey) as? String
         //
         //        if let text = string {
@@ -95,8 +115,40 @@ extension EditController {
     }
 }
 
+extension EditController {
+    func saveContent() {
+        print("AAA")
+    }
+}
+
+extension EditController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        let currentOffset = tableView.contentOffset
+        UIView.setAnimationsEnabled(false)
+        tableView.beginUpdates()
+        tableView.endUpdates()
+        UIView.setAnimationsEnabled(true)
+        tableView.contentOffset = currentOffset
+    }
+}
+
 extension EditController: ViewControllerProtocol {
     static func storyBoardName() -> String {
         return "Main"
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

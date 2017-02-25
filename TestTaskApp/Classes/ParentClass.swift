@@ -42,10 +42,6 @@ class ParentClass: UITableViewController {
 
 // MARK:- UITableViewDelegate
 extension ParentClass {
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50.0
-    }
-    
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 10.0
     }

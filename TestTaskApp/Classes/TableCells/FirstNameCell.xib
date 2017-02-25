@@ -12,39 +12,43 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FirstNameCell" id="KGk-i7-Jjw" customClass="FirstNameCell" customModule="TestTaskApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="580" height="70"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <rect key="frame" x="0.0" y="0.0" width="580" height="51"/>
+            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="580" height="69"/>
+                <rect key="frame" x="0.0" y="0.0" width="580" height="50"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZv-8r-bYr">
-                        <rect key="frame" x="20" y="0.0" width="150" height="70"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3R0-p3-lix">
+                        <rect key="frame" x="20" y="0.0" width="100" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="150" id="zF7-3a-uNv"/>
+                            <constraint firstAttribute="width" constant="100" id="yuz-YU-W0b"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Иван" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xT-NJ-o3f">
-                        <rect key="frame" x="170" y="0.0" width="400" height="70"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" scrollEnabled="NO" text="Иван" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="s9D-Qb-pD9">
+                        <rect key="frame" x="120" y="4" width="450" height="44"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="3xT-NJ-o3f" secondAttribute="trailing" constant="10" id="9MK-C7-9Bh"/>
-                    <constraint firstItem="3xT-NJ-o3f" firstAttribute="leading" secondItem="CZv-8r-bYr" secondAttribute="trailing" id="BNS-0y-NOt"/>
-                    <constraint firstAttribute="bottom" secondItem="CZv-8r-bYr" secondAttribute="bottom" id="GaY-R7-qlf"/>
-                    <constraint firstItem="CZv-8r-bYr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="LF8-rQ-Cui"/>
-                    <constraint firstItem="3xT-NJ-o3f" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="PDA-NR-CHA"/>
-                    <constraint firstAttribute="bottom" secondItem="3xT-NJ-o3f" secondAttribute="bottom" id="smR-xR-xvs"/>
-                    <constraint firstItem="CZv-8r-bYr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="u7p-OS-TcU"/>
+                    <constraint firstItem="3R0-p3-lix" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="6eC-uX-BEc"/>
+                    <constraint firstAttribute="trailing" secondItem="s9D-Qb-pD9" secondAttribute="trailing" constant="10" id="CHs-Rs-Zxf"/>
+                    <constraint firstAttribute="bottom" secondItem="3R0-p3-lix" secondAttribute="bottom" id="RhD-m7-Jjh"/>
+                    <constraint firstItem="s9D-Qb-pD9" firstAttribute="leading" secondItem="3R0-p3-lix" secondAttribute="trailing" id="U8q-Cx-szO"/>
+                    <constraint firstAttribute="bottom" secondItem="s9D-Qb-pD9" secondAttribute="bottom" constant="2" id="heV-V5-fPl"/>
+                    <constraint firstItem="3R0-p3-lix" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="o7s-H4-uNt"/>
+                    <constraint firstItem="s9D-Qb-pD9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="xUF-CU-hRR"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="-45" y="-42"/>
+            <connections>
+                <outlet property="textView" destination="s9D-Qb-pD9" id="DwY-3A-vSG"/>
+            </connections>
+            <point key="canvasLocation" x="-23" y="-28.5"/>
         </tableViewCell>
     </objects>
 </document>

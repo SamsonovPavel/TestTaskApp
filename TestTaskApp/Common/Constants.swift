@@ -17,7 +17,7 @@ public let patronymic = "Иванович"
 public let birhday    = "13.05.1992"
 public let gender     = "мужской"
 
-
+public let pickerArr = ["Мужской" ,"Женский", "Не указан"]
 
 
 
