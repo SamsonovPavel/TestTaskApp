@@ -238,14 +238,60 @@ extension EditController {
 extension EditController {
     func saveContent() {
         saveChangeContent()
+        textViewResponders()
         delegate?.updateUI()
         isChanged = false
     }
     
+    func validation(string: String) -> Bool {
+        var valid = false
+        
+        let validation = CharacterSet.alphanumerics.inverted
+        let result = string.components(separatedBy: validation)
+        
+        if result.count > 1 {
+            valid = true
+        } else {
+            let validationDigits = CharacterSet.decimalDigits
+            let result = string.components(separatedBy: validationDigits)
+
+            if result.count > 1 {
+                valid = true
+            }
+        }
+        return valid
+    }
+    
+    func validationAlert(title: String) {
+        let message = "Ошибка ввода. Допустимы только строчные и прописные символы"
+        let titleOk = "Ок"
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertOk = UIAlertAction(title: titleOk, style: .default, handler: nil)
+        
+        alertController.addAction(alertOk)
+        self.present(alertController, animated: true, completion: nil)
+    }
+
     func saveChangeContent() {
-        userDefault.set(firstNameTextView.text, forKey: firstNameKey)
-        userDefault.set(lastNameTextView.text, forKey: lastNameKey)
-        userDefault.set(patronymicTextView.text, forKey: patronymicKey)
+        if validation(string: firstNameTextView.text) {
+            validationAlert(title: "Имя")
+        } else {
+            userDefault.set(firstNameTextView.text, forKey: firstNameKey)
+        }
+        
+        if validation(string: lastNameTextView.text) {
+            validationAlert(title: "Фамилия")
+        } else {
+            userDefault.set(lastNameTextView.text, forKey: lastNameKey)
+        }
+        
+        if validation(string: patronymicTextView.text) {
+            validationAlert(title: "Отчество")
+        } else {
+            userDefault.set(patronymicTextView.text, forKey: patronymicKey)
+        }
+        
         userDefault.set(birthdayCell.birthdayLabel.text, forKey: birthdayKey)
         userDefault.set(genderCell.genderLabel.text, forKey: genderKey)
     }
