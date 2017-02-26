@@ -28,24 +28,34 @@ extension MainController {
         
         switch indexPath.row {
         case rows.firstNameRow:
-            let cell = tableView.dequeueReusableCell(withIdentifier: firstNameCellReuseIdentifier, for: indexPath) as! FirstNameCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: firstNameCellReuseIdentifier,
+                                                     for: indexPath) as! FirstNameCell
             cell.textView.isEditable = false
+            cell.textView.isSelectable = false
             return cell
             
         case rows.lastNameRow:
-            let cell = tableView.dequeueReusableCell(withIdentifier: lastNameCellReuseIdentifier, for: indexPath) as! LastNameCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: lastNameCellReuseIdentifier,
+                                                     for: indexPath) as! LastNameCell
+            cell.textView.isEditable = false
+            cell.textView.isSelectable = false
             return cell
             
         case rows.patronymicRow:
-            let cell = tableView.dequeueReusableCell(withIdentifier: patronymicCellReuseIdentifier, for: indexPath) as! PatronymicCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: patronymicCellReuseIdentifier,
+                                                     for: indexPath) as! PatronymicCell
+            cell.textView.isEditable = false
+            cell.textView.isSelectable = false
             return cell
             
         case rows.birthdayRow:
-            let cell = tableView.dequeueReusableCell(withIdentifier: birthdayCellReuseIdentifier, for: indexPath) as! BirthdayCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: birthdayCellReuseIdentifier,
+                                                     for: indexPath) as! BirthdayCell
             return cell
             
         case rows.genderRow:
-            let cell = tableView.dequeueReusableCell(withIdentifier: genderCellReuseIdentifier, for: indexPath) as! GenderCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: genderCellReuseIdentifier,
+                                                     for: indexPath) as! GenderCell
             return cell
             
         default: break

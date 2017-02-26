@@ -46,7 +46,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="textView" destination="RKC-Va-XYE" id="G0l-NP-YXK"/>
+                <outlet property="textView" destination="RKC-Va-XYE" id="VLO-0V-Pg0"/>
             </connections>
             <point key="canvasLocation" x="-23" y="-28.5"/>
         </tableViewCell>

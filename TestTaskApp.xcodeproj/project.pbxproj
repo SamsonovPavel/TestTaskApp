@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8456C9E91E620B4100C9C104 /* FirstNameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E805841E5F40C200A8B555 /* FirstNameCell.xib */; };
+		8456C9EA1E620C5500C9C104 /* LastNameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E805891E5F443A00A8B555 /* LastNameCell.xib */; };
 		84E805651E5F252F00A8B555 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E805631E5F252F00A8B555 /* LaunchScreen.storyboard */; };
 		84E805701E5F2BFD00A8B555 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E8056F1E5F2BFD00A8B555 /* Assets.xcassets */; };
 		84E805751E5F2C2200A8B555 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E805731E5F2C2200A8B555 /* AppDelegate.swift */; };
@@ -277,6 +278,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8456C9EA1E620C5500C9C104 /* LastNameCell.xib in Resources */,
 				8456C9E91E620B4100C9C104 /* FirstNameCell.xib in Resources */,
 				84E805781E5F2C5F00A8B555 /* Main.storyboard in Resources */,
 				84E805901E5F450100A8B555 /* PatronymicCell.xib in Resources */,

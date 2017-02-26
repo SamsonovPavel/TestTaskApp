@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="580" height="51"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yjj-mM-0p6" id="kdR-4l-fmy">
-                <rect key="frame" x="0.0" y="0.0" width="580" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="580" height="51"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата рождения" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvr-g0-sPn">
@@ -45,6 +45,9 @@
                     <constraint firstItem="7GU-9P-LHh" firstAttribute="top" secondItem="kdR-4l-fmy" secondAttribute="top" id="sSa-nb-sAs"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="birthdayLabel" destination="7GU-9P-LHh" id="2g9-bW-8jn"/>
+            </connections>
             <point key="canvasLocation" x="-7" y="-30"/>
         </tableViewCell>
     </objects>

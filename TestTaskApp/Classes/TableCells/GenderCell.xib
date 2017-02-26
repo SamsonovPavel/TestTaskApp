@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="580" height="51"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="03P-Fy-rFz" id="Foc-gz-98Z">
-                <rect key="frame" x="0.0" y="0.0" width="580" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="580" height="51"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пол" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nL0-cZ-hBv">
@@ -45,7 +45,10 @@
                     <constraint firstAttribute="bottom" secondItem="TdX-n6-trZ" secondAttribute="bottom" id="zzo-ab-Y17"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="-7" y="-30"/>
+            <connections>
+                <outlet property="genderLabel" destination="TdX-n6-trZ" id="o7b-5u-EjL"/>
+            </connections>
+            <point key="canvasLocation" x="-195" y="-41"/>
         </tableViewCell>
     </objects>
 </document>
