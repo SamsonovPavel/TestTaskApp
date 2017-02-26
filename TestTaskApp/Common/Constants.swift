@@ -11,10 +11,16 @@ import UIKit
 
 public let rows = (firstNameRow: 0, lastNameRow: 1, patronymicRow : 2, birthdayRow: 3, genderRow: 4)
 
+public let firstNameKey  = "FirstNameKey"
+public let lastNameKey   = "LastNameKey"
+public let patronymicKey = "PatronymicKey"
+public let birthdayKey   = "BirthdayKey"
+public let genderKey     = "GenderKey"
+
 public let firstName  = "Иван"
 public let lastName   = "Иванов"
 public let patronymic = "Иванович"
-public let birhday    = "13.05.1992"
+public let birthday    = "13.05.1992"
 public let gender     = "мужской"
 
 public let pickerArr = ["Мужской" ,"Женский", "Не указан"]

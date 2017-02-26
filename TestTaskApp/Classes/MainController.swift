@@ -14,10 +14,13 @@ class MainController: ParentClass {
         super.viewDidLoad()
         
         tableView.allowsSelection = false
+        tableView.estimatedRowHeight = 50.0
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
 
     @IBAction func tapOnEdit(_ sender: UIButton) {
-        let editVC = EditController.create()
+        let editVC = EditController.create() as! EditController
+        editVC.delegate = self
         navigationController?.pushViewController(editVC, animated: true)
     }
 }
@@ -32,6 +35,15 @@ extension MainController {
                                                      for: indexPath) as! FirstNameCell
             cell.textView.isEditable = false
             cell.textView.isSelectable = false
+            
+            let string = userDefault.value(forKey: firstNameKey) as? String
+            
+            if let text = string {
+                cell.textView.text = text
+            } else {
+                cell.textView.text = firstName
+            }
+            
             return cell
             
         case rows.lastNameRow:
@@ -39,6 +51,15 @@ extension MainController {
                                                      for: indexPath) as! LastNameCell
             cell.textView.isEditable = false
             cell.textView.isSelectable = false
+            
+            let string = userDefault.value(forKey: lastNameKey) as? String
+            
+            if let text = string {
+                cell.textView.text = text
+            } else {
+                cell.textView.text = lastName
+            }
+            
             return cell
             
         case rows.patronymicRow:
@@ -46,21 +67,50 @@ extension MainController {
                                                      for: indexPath) as! PatronymicCell
             cell.textView.isEditable = false
             cell.textView.isSelectable = false
+            
+            let string = userDefault.value(forKey: patronymicKey) as? String
+            
+            if let text = string {
+                cell.textView.text = text
+            } else {
+                cell.textView.text = patronymic
+            }
+            
             return cell
             
         case rows.birthdayRow:
             let cell = tableView.dequeueReusableCell(withIdentifier: birthdayCellReuseIdentifier,
                                                      for: indexPath) as! BirthdayCell
+            let string = userDefault.value(forKey: birthdayKey) as? String
+            
+            if let text = string {
+                cell.birthdayLabel.text = text
+            } else {
+                cell.birthdayLabel.text = birthday
+            }
             return cell
             
         case rows.genderRow:
             let cell = tableView.dequeueReusableCell(withIdentifier: genderCellReuseIdentifier,
                                                      for: indexPath) as! GenderCell
+            let string = userDefault.value(forKey: genderKey) as? String
+            
+            if let text = string {
+                cell.genderLabel.text = text
+            } else {
+                cell.genderLabel.text = gender
+            }
             return cell
             
         default: break
         }
         return UITableViewCell()
+    }
+}
+
+extension MainController: EditControllerDelegate {
+    func updateUI() {
+        tableView.reloadData()
     }
 }
 

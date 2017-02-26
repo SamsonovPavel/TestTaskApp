@@ -8,20 +8,28 @@
 
 import UIKit
 
+protocol EditControllerDelegate {
+    func updateUI()
+}
+
 class EditController: ParentClass {
     var picker: UIPickerView?
     var datePicker: UIDatePicker?
     
     let pickerArr = ["Мужской" ,"Женский", "Не указан"]
     
-    var birthdayCell = BirthdayCell()
-    var genderCell = GenderCell()
-    
     var firstNameTextView  = UITextView()
     var lastNameTextView   = UITextView()
     var patronymicTextView = UITextView()
     
+    var birthdayCell: BirthdayCell!
+    var genderCell: GenderCell!
+    
     var tap: UITapGestureRecognizer?
+    
+    var delegate: EditControllerDelegate?
+    
+    var isChanged = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +44,10 @@ class EditController: ParentClass {
                                                             action: #selector(saveContent))
         
         tap = UITapGestureRecognizer(target: self, action: #selector(textViewResponders))
+        
+        self.navigationItem.hidesBackButton = true
+        let backButton = UIBarButtonItem(title: "Назад", style: .plain, target: self, action: #selector(backButton(sender:)))
+        self.navigationItem.leftBarButtonItem = backButton
     }
 }
 
@@ -128,6 +140,36 @@ extension EditController {
         birthdayCell.birthdayLabel.text = formatter.string(from: sender.date)
         view.addGestureRecognizer(tap!)
     }
+    
+    func backButton(sender: UIBarButtonItem) {
+        if isChanged {
+            let title = "Предупреждение"
+            let message = "Данные были изменены. Вы желаете сохранить изменения, в противном случае внесенные правки будут отменены."
+            let titleSave = "Сохранить"
+            let titleSkip = "Пропустить"
+            
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
+            let alertSave = UIAlertAction(title: titleSave, style: .default, handler: { [weak self] (action) in
+                guard let sself = self else { return }
+                sself.saveContent()
+                _ = sself.navigationController?.popViewController(animated: true)
+            })
+            
+            let alertSkip = UIAlertAction(title: titleSkip, style: .default, handler: { [weak self] (action) in
+                guard let sself = self else { return }
+                _ = sself.navigationController?.popViewController(animated: true)
+            })
+            
+            alertController.addAction(alertSave)
+            alertController.addAction(alertSkip)
+            self.present(alertController, animated: true, completion: nil)
+            isChanged = false
+        } else {
+            _ = navigationController?.popViewController(animated: true)
+        }
+        textViewResponders()
+    }
 }
 
 extension EditController {
@@ -135,64 +177,77 @@ extension EditController {
         cell.textView.delegate = self
         firstNameTextView = cell.textView
         
-        //        let string = userDefault.value(forKey: firstNameKey) as? String
-        //
-        //        if let text = string {
-        //            cell.firstName.text = text
-        //        } else {
-        //            cell.firstName.text = firstName
-        //        }
+        let string = userDefault.value(forKey: firstNameKey) as? String
+        
+        if let text = string {
+            cell.textView.text = text
+        } else {
+            cell.textView.text = firstName
+        }
+
     }
     
     func configureLastNameCell(cell: LastNameCell, indexPath: IndexPath) {
         cell.textView.delegate = self
         lastNameTextView = cell.textView
         
-        //        let string = userDefault.value(forKey: lastNameKey) as? String
-        //
-        //        if let text = string {
-        //            cell.lastNameLabel.text = text
-        //        } else {
-        //            cell.lastNameLabel.text = lastName
-        //        }
+        let string = userDefault.value(forKey: lastNameKey) as? String
+        
+        if let text = string {
+            cell.textView.text = text
+        } else {
+            cell.textView.text = lastName
+        }
     }
     
     func configurePatronymicCell(cell: PatronymicCell, indexPath: IndexPath) {
         cell.textView.delegate = self
         patronymicTextView = cell.textView
         
-        //        let string = userDefault.value(forKey: patronymicKey) as? String
-        //
-        //        if let text = string {
-        //            cell.patronymicLabel.text = text
-        //        } else {
-        //            cell.patronymicLabel.text = patronymic
-        //        }
+        let string = userDefault.value(forKey: patronymicKey) as? String
+        
+        if let text = string {
+            cell.textView.text = text
+        } else {
+            cell.textView.text = patronymic
+        }
     }
     
     func configureBirthdayCell(cell: BirthdayCell, indexPath: IndexPath) {
-        //        let string = userDefault.value(forKey: birthdayKey) as? String
-        //
-        //        if let text = string {
-        //            cell.birthdayLabel.text = text
-        //        } else {
-        //            cell.birthdayLabel.text = birhday
-        //        }
+        let string = userDefault.value(forKey: birthdayKey) as? String
+        
+        if let text = string {
+            cell.birthdayLabel.text = text
+        } else {
+            cell.birthdayLabel.text = birthday
+        }
     }
     
     func configureGenderCell(cell: GenderCell, indexPath: IndexPath) {
-        //        let string = userDefault.value(forKey: genderKey) as? String
-        //        
-        //        if let text = string {
-        //            cell.genderLabel.text = text
-        //        } else {
-        //            cell.genderLabel.text = gender
-        //        }
+        let string = userDefault.value(forKey: genderKey) as? String
+        
+        if let text = string {
+            cell.genderLabel.text = text
+        } else {
+            cell.genderLabel.text = gender
+        }
+
     }
 }
 
 extension EditController {
     func saveContent() {
+        saveChangeContent()
+        delegate?.updateUI()
+        isChanged = false
+    }
+    
+    func saveChangeContent() {
+        userDefault.set(firstNameTextView.text, forKey: firstNameKey)
+        userDefault.set(lastNameTextView.text, forKey: lastNameKey)
+        userDefault.set(patronymicTextView.text, forKey: patronymicKey)
+        userDefault.set(birthdayCell.birthdayLabel.text, forKey: birthdayKey)
+        userDefault.set(genderCell.genderLabel.text, forKey: genderKey)
     }
     
     func textViewResponders() {
@@ -217,6 +272,7 @@ extension EditController {
         }
         pickerEnabled()
         datePickerEnabled()
+        isChanged = true
     }
     
     func pickerEnabled() {
@@ -235,6 +291,7 @@ extension EditController {
 extension EditController: UITextViewDelegate {
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         view.addGestureRecognizer(tap!)
+        isChanged = true
         return true
     }
     
@@ -253,18 +310,5 @@ extension EditController: ViewControllerProtocol {
         return "Main"
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

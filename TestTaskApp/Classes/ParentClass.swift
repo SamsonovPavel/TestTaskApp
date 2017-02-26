@@ -14,6 +14,8 @@ let patronymicCellReuseIdentifier = "PatronymicCell"
 let birthdayCellReuseIdentifier   = "BirthdayCell"
 let genderCellReuseIdentifier     = "GenderCell"
 
+public let userDefault = UserDefaults.standard
+
 class ParentClass: UITableViewController {
 
     override func viewDidLoad() {
