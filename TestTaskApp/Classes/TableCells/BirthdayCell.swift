@@ -9,8 +9,8 @@
 import UIKit
 
 class BirthdayCell: UITableViewCell {
-
-    @IBOutlet weak var birthdayLabel: UILabel!
+    
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     override func awakeFromNib() {
         super.awakeFromNib()

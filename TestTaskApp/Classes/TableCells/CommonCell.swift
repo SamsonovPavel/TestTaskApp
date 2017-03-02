@@ -1,27 +1,25 @@
 //
-//  PatronymicCell.swift
+//  CommonCell.swift
 //  TestTaskApp
 //
-//  Created by Pavel Samsonov on 23.02.17.
+//  Created by Pavel Samsonov on 01.03.17.
 //  Copyright © 2017 Pavel Samsonov. All rights reserved.
 //
 
 import UIKit
 
-class PatronymicCell: UITableViewCell {
+class CommonCell: UITableViewCell {
 
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleTextLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         self.selectionStyle = .none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 }

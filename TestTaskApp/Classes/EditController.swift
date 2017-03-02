@@ -22,14 +22,22 @@ class EditController: ParentClass {
     var lastNameTextView   = UITextView()
     var patronymicTextView = UITextView()
     
-    var birthdayCell: BirthdayCell!
-    var genderCell: GenderCell!
+    var firstNameText  = ""
+    var lastNameText   = ""
+    var patronymicText = ""
+    
+    var birthdayCell: CommonCell?
+    var birthdayText: String?
+    var genderText: String?
     
     var tap: UITapGestureRecognizer?
     
     var delegate: EditControllerDelegate?
     
     var isChanged = false
+    
+    var datePickerIndexPath: IndexPath?
+    var pickerViewIndexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,33 +61,47 @@ class EditController: ParentClass {
 
 // MARK:- UITableViewDataSource
 extension EditController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isExistIndexPathDatePicker || isExistIndexPathPickerView {
+            return dataArray.count + 1
+        }
+        return dataArray.count
+    }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
         
-        switch indexPath.row {
-        case rows.firstNameRow:
-            cell = tableView.dequeueReusableCell(withIdentifier: firstNameCellReuseIdentifier, for: indexPath) as! FirstNameCell
-            configureFirstNameCell(cell: cell as! FirstNameCell, indexPath: indexPath)
+        if indexPath.row == rows.firstNameRow || indexPath.row == rows.lastNameRow || indexPath.row == rows.patronymicRow {
+            cell = tableView.dequeueReusableCell(withIdentifier: fullNameCellReuseIdentifier, for: indexPath) as! FullNameCell
+            (cell as! FullNameCell).title.text = dataArray[indexPath.row]
             
-        case rows.lastNameRow:
-            cell = tableView.dequeueReusableCell(withIdentifier: lastNameCellReuseIdentifier, for: indexPath) as! LastNameCell
-            configureLastNameCell(cell: cell as! LastNameCell, indexPath: indexPath)
-
-        case rows.patronymicRow:
-            cell = tableView.dequeueReusableCell(withIdentifier: patronymicCellReuseIdentifier, for: indexPath) as! PatronymicCell
-            configurePatronymicCell(cell: cell as! PatronymicCell, indexPath: indexPath)
-            
-        case rows.birthdayRow:
-            cell = tableView.dequeueReusableCell(withIdentifier: birthdayCellReuseIdentifier, for: indexPath) as! BirthdayCell
-            configureBirthdayCell(cell: cell as! BirthdayCell, indexPath: indexPath)
-            birthdayCell = cell as! BirthdayCell
-            
-        case rows.genderRow:
+            if indexPath.row == rows.firstNameRow {
+                configureFirstNameCell(cell: cell as! FullNameCell, indexPath: indexPath)
+            } else if indexPath.row == rows.lastNameRow {
+                configureLastNameCell(cell: cell as! FullNameCell, indexPath: indexPath)
+            } else if indexPath.row == rows.patronymicRow {
+                configurePatronymicCell(cell: cell as! FullNameCell, indexPath: indexPath)
+            }
+        } else if indexPath.row == rows.birthdayRow {
+            cell = tableView.dequeueReusableCell(withIdentifier: commonCellReuseIdentifier, for: indexPath) as! CommonCell
+            configureBirthdayCell(cell: cell as! CommonCell, indexPath: indexPath)
+        } else if indexPath.row == rows.genderRow - 1 {
+            cell = tableView.dequeueReusableCell(withIdentifier: commonCellReuseIdentifier, for: indexPath) as! CommonCell
+            configureGenderCell(cell: cell as! CommonCell, indexPath: indexPath)
+        } else if indexPath.row == rows.genderRow {
             cell = tableView.dequeueReusableCell(withIdentifier: genderCellReuseIdentifier, for: indexPath) as! GenderCell
-            configureGenderCell(cell: cell as! GenderCell, indexPath: indexPath)
-            genderCell = cell as! GenderCell
-            
-        default: break
+            (cell as! GenderCell).pickerView.delegate = self
+        }
+        
+        if isExistIndexPathDatePicker {
+            if indexPath.row == rows.birthdayDatePickerRow {
+                cell = tableView.dequeueReusableCell(withIdentifier: birthdayCellReuseIdentifier, for: indexPath) as! BirthdayCell
+                datePicker = (cell as! BirthdayCell).datePicker
+                datePicker?.addTarget(self, action: #selector(handleDatePicker(sender:)), for: UIControlEvents.valueChanged)
+            } else if indexPath.row == rows.genderRow {
+                cell = tableView.dequeueReusableCell(withIdentifier: commonCellReuseIdentifier, for: indexPath) as! CommonCell
+                configureGenderCell(cell: cell as! CommonCell, indexPath: indexPath)
+            }
         }
         return cell
     }
@@ -87,58 +109,38 @@ extension EditController {
 
 // MARK:- UITableViewDelegate
 extension EditController {
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case rows.birthdayRow:
-            textViewResponders()
-            
-            datePicker = UIDatePicker(frame: CGRect(origin: CGPoint(x: 0, y: self.view.frame.size.height - 300),
-                                                    size: CGSize(width: (self.view.frame.size.width), height: 300)))
-            datePicker?.datePickerMode = .date
-            datePicker?.addTarget(self, action: #selector(handleDatePicker(sender:)), for: UIControlEvents.valueChanged)
-            self.view.addSubview(datePicker!)
-            
-        case rows.genderRow:
-            textViewResponders()
-            
-            picker = UIPickerView(frame: CGRect(origin: CGPoint(x: 0, y: self.view.frame.size.height - 300),
-                                                size: CGSize(width: (self.view.frame.size.width), height: 300)))
-            picker?.delegate = self
-            picker?.dataSource = self
-            
-            self.view.addSubview(picker!)
-            
-        default: break
+        if indexPath.row == rows.birthdayRow {
+            if isExistIndexPathPickerView {
+                let index = IndexPath(row: indexPath.row + 1, section: 0)
+                togglePickerViewForSelectedIndexPath(indexPath: index)
+            }
+            toggleDatePickerForSelectedIndexPath(indexPath: indexPath)
+        } else if isExistIndexPathDatePicker {
+            if indexPath.row == rows.genderRow {
+                toggleDatePickerForSelectedIndexPath(indexPath: indexPath)
+                togglePickerViewForSelectedIndexPath(indexPath: indexPath)
+            }
+        } else {
+            togglePickerViewForSelectedIndexPath(indexPath: indexPath)
         }
+        tableView.reloadData()
     }
 }
 
-extension EditController: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 3
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerArr[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        genderCell.genderLabel.text = pickerArr[row]
-        view.addGestureRecognizer(tap!)
-    }
-}
-
+// MARK:- Additional handlers
 extension EditController {
     func handleDatePicker(sender: UIDatePicker) {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
-        birthdayCell.birthdayLabel.text = formatter.string(from: sender.date)
-        view.addGestureRecognizer(tap!)
+        birthdayText = formatter.string(from: sender.date)
+        
+        if birthdayText != userDefault.value(forKey: birthdayKey) as? String {
+            isChanged = true
+        } else {
+            isChanged = false
+        }
+        tableView.reloadData()
     }
     
     func backButton(sender: UIBarButtonItem) {
@@ -170,174 +172,146 @@ extension EditController {
         }
         textViewResponders()
     }
+    
+    fileprivate func toggleDatePickerForSelectedIndexPath(indexPath: IndexPath) {
+        tableView.beginUpdates()
+        var indexRow = indexPath.row
+        if !isExistIndexPathDatePicker {
+            indexRow += 1
+        } else {
+            indexRow -= 1
+        }
+        let index = [IndexPath(row: indexRow, section: 0)]
+        
+        if (datePickerIndexPath != nil) {
+            tableView.deleteRows(at: index, with: .fade)
+            datePickerIndexPath = nil
+        } else {
+            tableView.insertRows(at: index, with: .fade)
+            datePickerIndexPath = IndexPath(row: indexPath.row + 1, section: 0)
+        }
+        tableView.endUpdates()
+    }
+    fileprivate func togglePickerViewForSelectedIndexPath(indexPath: IndexPath) {
+        tableView.beginUpdates()
+        var indexRow = indexPath.row
+        if isExistIndexPathDatePicker {
+            indexRow += 1
+        }
+        let index = [IndexPath(row: indexRow, section: 0)]
+        
+        if (pickerViewIndexPath != nil) {
+            tableView.deleteRows(at: index, with: .fade)
+            pickerViewIndexPath = nil
+        } else {
+            tableView.insertRows(at: index, with: .fade)
+            pickerViewIndexPath = IndexPath(row: indexPath.row + 1, section: 0)
+        }
+        tableView.endUpdates()
+    }
+    
+    fileprivate var isExistIndexPathDatePicker: Bool {
+        return (datePickerIndexPath != nil)
+    }
+    fileprivate var isExistIndexPathPickerView: Bool {
+        return (pickerViewIndexPath != nil)
+    }
 }
 
+// MARK:- ConfigureCell
 extension EditController {
-    func configureFirstNameCell(cell: FirstNameCell, indexPath: IndexPath) {
+    func configureFirstNameCell(cell: FullNameCell, indexPath: IndexPath) {
         cell.textView.delegate = self
         firstNameTextView = cell.textView
+        cell.textView.tag = 1
         
-        let string = userDefault.value(forKey: firstNameKey) as? String
-        
-        if let text = string {
-            cell.textView.text = text
+        if firstNameText != "" {
+            cell.textView.text = firstNameText
         } else {
-            cell.textView.text = firstName
+            cell.textView.text = userDefault.value(forKey: firstNameKey) as? String
         }
-
     }
-    
-    func configureLastNameCell(cell: LastNameCell, indexPath: IndexPath) {
+
+    func configureLastNameCell(cell: FullNameCell, indexPath: IndexPath) {
         cell.textView.delegate = self
         lastNameTextView = cell.textView
+        cell.textView.tag = 2
         
-        let string = userDefault.value(forKey: lastNameKey) as? String
-        
-        if let text = string {
-            cell.textView.text = text
+        if lastNameText != "" {
+            cell.textView.text = lastNameText
         } else {
-            cell.textView.text = lastName
+            cell.textView.text = userDefault.value(forKey: lastNameKey) as? String
         }
     }
     
-    func configurePatronymicCell(cell: PatronymicCell, indexPath: IndexPath) {
+    func configurePatronymicCell(cell: FullNameCell, indexPath: IndexPath) {
         cell.textView.delegate = self
         patronymicTextView = cell.textView
+        cell.textView.tag = 3
         
-        let string = userDefault.value(forKey: patronymicKey) as? String
-        
-        if let text = string {
-            cell.textView.text = text
+        if patronymicText != "" {
+            cell.textView.text = patronymicText
         } else {
-            cell.textView.text = patronymic
+            cell.textView.text = userDefault.value(forKey: patronymicKey) as? String
         }
     }
     
-    func configureBirthdayCell(cell: BirthdayCell, indexPath: IndexPath) {
-        let string = userDefault.value(forKey: birthdayKey) as? String
+    func configureBirthdayCell(cell: CommonCell, indexPath: IndexPath) {
+        birthdayCell = cell
+        cell.titleLabel.text = dataArray[indexPath.row]
         
-        if let text = string {
-            cell.birthdayLabel.text = text
+        if let text = birthdayText {
+            cell.titleTextLabel.text = text
         } else {
-            cell.birthdayLabel.text = birthday
+            cell.titleTextLabel.text = userDefault.value(forKey: birthdayKey) as? String
         }
     }
     
-    func configureGenderCell(cell: GenderCell, indexPath: IndexPath) {
-        let string = userDefault.value(forKey: genderKey) as? String
+    func configureGenderCell(cell: CommonCell, indexPath: IndexPath) {
+        var index = indexPath.row
+        if isExistIndexPathDatePicker {
+            index -= 1
+        }
+        cell.titleLabel.text = dataArray[index]
         
-        if let text = string {
-            cell.genderLabel.text = text
+        if let text = genderText {
+            cell.titleTextLabel.text = text
         } else {
-            cell.genderLabel.text = gender
-        }
-
-    }
-}
-
-extension EditController {
-    func saveContent() {
-        saveChangeContent()
-        textViewResponders()
-        delegate?.updateUI()
-        isChanged = false
-    }
-    
-    func validation(string: String) -> Bool {
-        var valid = false
-        
-        let validation = CharacterSet.alphanumerics.inverted
-        let result = string.components(separatedBy: validation)
-        
-        if result.count > 1 {
-            valid = true
-        } else {
-            let validationDigits = CharacterSet.decimalDigits
-            let result = string.components(separatedBy: validationDigits)
-
-            if result.count > 1 {
-                valid = true
-            }
-        }
-        return valid
-    }
-    
-    func validationAlert(title: String) {
-        let message = "Ошибка ввода. Допустимы только строчные и прописные символы"
-        let titleOk = "Ок"
-        
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let alertOk = UIAlertAction(title: titleOk, style: .default, handler: nil)
-        
-        alertController.addAction(alertOk)
-        self.present(alertController, animated: true, completion: nil)
-    }
-
-    func saveChangeContent() {
-        if validation(string: firstNameTextView.text) {
-            validationAlert(title: "Имя")
-        } else {
-            userDefault.set(firstNameTextView.text, forKey: firstNameKey)
-        }
-        
-        if validation(string: lastNameTextView.text) {
-            validationAlert(title: "Фамилия")
-        } else {
-            userDefault.set(lastNameTextView.text, forKey: lastNameKey)
-        }
-        
-        if validation(string: patronymicTextView.text) {
-            validationAlert(title: "Отчество")
-        } else {
-            userDefault.set(patronymicTextView.text, forKey: patronymicKey)
-        }
-        
-        userDefault.set(birthdayCell.birthdayLabel.text, forKey: birthdayKey)
-        userDefault.set(genderCell.genderLabel.text, forKey: genderKey)
-    }
-    
-    func textViewResponders() {
-        if firstNameTextView.isFirstResponder {
-            UIView.animate(withDuration: 0.7, animations: { [weak self] in
-                guard let sself = self else { return }
-                sself.firstNameTextView.resignFirstResponder()
-            })
-        } else if lastNameTextView.isFirstResponder {
-            UIView.animate(withDuration: 0.7, animations: { [weak self] in
-                guard let sself = self else { return }
-                sself.lastNameTextView.resignFirstResponder()
-            })
-        } else if patronymicTextView.isFirstResponder {
-            UIView.animate(withDuration: 0.7, animations: { [weak self] in
-                guard let sself = self else { return }
-                sself.patronymicTextView.resignFirstResponder()
-            })
-        }
-        if tap != nil {
-            view.removeGestureRecognizer(tap!)
-        }
-        pickerEnabled()
-        datePickerEnabled()
-        isChanged = true
-    }
-    
-    func pickerEnabled() {
-        if picker != nil {
-            picker?.removeFromSuperview()
-        }
-    }
-    
-    func datePickerEnabled() {
-        if datePicker != nil {
-            datePicker?.removeFromSuperview()
+            cell.titleTextLabel.text = userDefault.value(forKey: genderKey) as? String
         }
     }
 }
 
+// MARK:- UIPickerViewDelegate, UIPickerViewDataSource
+extension EditController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 3
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerArr[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        genderText = pickerArr[row]
+        
+        if genderText != userDefault.value(forKey: genderKey) as? String {
+            isChanged = true
+        } else {
+            isChanged = false
+        }
+        tableView.reloadData()
+    }
+}
+
+// MARK:- UITextViewDelegate
 extension EditController: UITextViewDelegate {
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         view.addGestureRecognizer(tap!)
-        isChanged = true
         return true
     }
     
@@ -348,13 +322,50 @@ extension EditController: UITextViewDelegate {
         tableView.endUpdates()
         UIView.setAnimationsEnabled(true)
         tableView.contentOffset = currentOffset
+        
+        let firstName = userDefault.value(forKey: firstNameKey) ?? "Error"
+        let lastName = userDefault.value(forKey: lastNameKey) ?? "Error"
+        let patronymic = userDefault.value(forKey: patronymicKey) ?? "Error"
+        
+        switch textView.text {
+        case firstName as! String: isChanged = false
+        case lastName as! String: isChanged = false
+        case patronymic as! String: isChanged = false
+        default: isChanged = true
+        }
+        
+        switch textView.tag {
+        case 1: firstNameText = textView.text
+        case 2: lastNameText = textView.text
+        case 3: patronymicText = textView.text
+        default: break
+        }
     }
 }
 
+// MARK:- ViewControllerProtocol
 extension EditController: ViewControllerProtocol {
     static func storyBoardName() -> String {
         return "Main"
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

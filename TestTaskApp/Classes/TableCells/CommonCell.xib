@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommonCell" id="gzP-eI-oL1" customClass="CommonCell" customModule="TestTaskApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="580" height="51"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gzP-eI-oL1" id="LqX-hf-fYd">
+                <rect key="frame" x="0.0" y="0.0" width="580" height="50"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPw-Dh-v9s">
+                        <rect key="frame" x="20" y="0.0" width="180" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="180" id="Dos-UL-hvE"/>
+                            <constraint firstAttribute="height" constant="50" id="EOf-zp-MUx"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MG8-8w-hxV">
+                        <rect key="frame" x="200" y="0.0" width="370" height="50"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                        <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="fPw-Dh-v9s" firstAttribute="leading" secondItem="LqX-hf-fYd" secondAttribute="leading" constant="20" id="C3e-Zy-gpO"/>
+                    <constraint firstAttribute="trailing" secondItem="MG8-8w-hxV" secondAttribute="trailing" constant="10" id="Em4-ld-Twh"/>
+                    <constraint firstItem="fPw-Dh-v9s" firstAttribute="top" secondItem="LqX-hf-fYd" secondAttribute="top" id="JL7-7y-aaZ"/>
+                    <constraint firstItem="MG8-8w-hxV" firstAttribute="leading" secondItem="fPw-Dh-v9s" secondAttribute="trailing" id="RX9-VC-6CV"/>
+                    <constraint firstAttribute="bottom" secondItem="MG8-8w-hxV" secondAttribute="bottom" id="XyL-Y0-S5A"/>
+                    <constraint firstItem="MG8-8w-hxV" firstAttribute="top" secondItem="LqX-hf-fYd" secondAttribute="top" id="kGW-rL-Bbh"/>
+                    <constraint firstAttribute="bottom" secondItem="fPw-Dh-v9s" secondAttribute="bottom" id="oBR-42-ucT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="titleLabel" destination="fPw-Dh-v9s" id="G0g-1u-S77"/>
+                <outlet property="titleTextLabel" destination="MG8-8w-hxV" id="Tyr-eg-TRa"/>
+            </connections>
+            <point key="canvasLocation" x="-304" y="-107"/>
+        </tableViewCell>
+    </objects>
+</document>

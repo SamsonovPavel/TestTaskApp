@@ -8,27 +8,20 @@
 
 import UIKit
 
-let firstNameCellReuseIdentifier  = "FirstNameCell"
-let lastNameCellReuseIdentifier   = "LastNameCell"
-let patronymicCellReuseIdentifier = "PatronymicCell"
+let fullNameCellReuseIdentifier   = "FullNameCell"
+let commonCellReuseIdentifier     = "CommonCell"
 let birthdayCellReuseIdentifier   = "BirthdayCell"
 let genderCellReuseIdentifier     = "GenderCell"
 
-public let userDefault = UserDefaults.standard
-
 class ParentClass: UITableViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let firstNameNib = UINib(nibName: "FirstNameCell", bundle: nil)
-        tableView.register(firstNameNib, forCellReuseIdentifier: firstNameCellReuseIdentifier)
+        let fullNameNib = UINib(nibName: "FullNameCell", bundle: nil)
+        tableView.register(fullNameNib, forCellReuseIdentifier: fullNameCellReuseIdentifier)
         
-        let lastNameNib = UINib(nibName: "LastNameCell", bundle: nil)
-        tableView.register(lastNameNib, forCellReuseIdentifier: lastNameCellReuseIdentifier)
-        
-        let patronymicNib = UINib(nibName: "PatronymicCell", bundle: nil)
-        tableView.register(patronymicNib, forCellReuseIdentifier: patronymicCellReuseIdentifier)
+        let commonNib = UINib(nibName: "CommonCell", bundle: nil)
+        tableView.register(commonNib, forCellReuseIdentifier: commonCellReuseIdentifier)
         
         let birthdayNib = UINib(nibName: "BirthdayCell", bundle: nil)
         tableView.register(birthdayNib, forCellReuseIdentifier: birthdayCellReuseIdentifier)
@@ -45,7 +38,7 @@ class ParentClass: UITableViewController {
 // MARK:- UITableViewDelegate
 extension ParentClass {
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 10.0
+        return 1.0
     }
 }
 
@@ -55,6 +48,6 @@ extension ParentClass {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return dataArray.count
     }
 }

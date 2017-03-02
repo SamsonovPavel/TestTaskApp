@@ -9,8 +9,8 @@
 import UIKit
 
 class GenderCell: UITableViewCell {
-
-    @IBOutlet weak var genderLabel: UILabel!
+    
+    @IBOutlet weak var pickerView: UIPickerView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,5 +21,4 @@ class GenderCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
 }

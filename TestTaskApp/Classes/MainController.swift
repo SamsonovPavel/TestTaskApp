@@ -28,98 +28,43 @@ class MainController: ParentClass {
 // MARK:- UITableViewDataSource
 extension MainController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         switch indexPath.row {
-        case rows.firstNameRow:
-            let cell = tableView.dequeueReusableCell(withIdentifier: firstNameCellReuseIdentifier,
-                                                     for: indexPath) as! FirstNameCell
+        case rows.firstNameRow, rows.lastNameRow, rows.patronymicRow:
+            let cell = tableView.dequeueReusableCell(withIdentifier: fullNameCellReuseIdentifier,
+                                                     for: indexPath) as! FullNameCell
             cell.textView.isEditable = false
             cell.textView.isSelectable = false
+            cell.title.text = dataArray[indexPath.row]
             
-            let string = userDefault.value(forKey: firstNameKey) as? String
-            
-            if let text = string {
-                cell.textView.text = text
-            } else {
-                cell.textView.text = firstName
-            }
-            
-            return cell
-            
-        case rows.lastNameRow:
-            let cell = tableView.dequeueReusableCell(withIdentifier: lastNameCellReuseIdentifier,
-                                                     for: indexPath) as! LastNameCell
-            cell.textView.isEditable = false
-            cell.textView.isSelectable = false
-            
-            let string = userDefault.value(forKey: lastNameKey) as? String
-            
-            if let text = string {
-                cell.textView.text = text
-            } else {
-                cell.textView.text = lastName
-            }
-            
-            return cell
-            
-        case rows.patronymicRow:
-            let cell = tableView.dequeueReusableCell(withIdentifier: patronymicCellReuseIdentifier,
-                                                     for: indexPath) as! PatronymicCell
-            cell.textView.isEditable = false
-            cell.textView.isSelectable = false
-            
-            let string = userDefault.value(forKey: patronymicKey) as? String
-            
-            if let text = string {
-                cell.textView.text = text
-            } else {
-                cell.textView.text = patronymic
-            }
-            
-            return cell
-            
-        case rows.birthdayRow:
-            let cell = tableView.dequeueReusableCell(withIdentifier: birthdayCellReuseIdentifier,
-                                                     for: indexPath) as! BirthdayCell
-            let string = userDefault.value(forKey: birthdayKey) as? String
-            
-            if let text = string {
-                cell.birthdayLabel.text = text
-            } else {
-                cell.birthdayLabel.text = birthday
+            if indexPath.row == rows.firstNameRow {
+                cell.textView.text = userDefault.value(forKey: firstNameKey) as? String
+            } else if indexPath.row == rows.lastNameRow {
+                cell.textView.text = userDefault.value(forKey: lastNameKey) as? String
+            } else if indexPath.row == rows.patronymicRow {
+                cell.textView.text = userDefault.value(forKey: patronymicKey) as? String
             }
             return cell
             
-        case rows.genderRow:
-            let cell = tableView.dequeueReusableCell(withIdentifier: genderCellReuseIdentifier,
-                                                     for: indexPath) as! GenderCell
-            let string = userDefault.value(forKey: genderKey) as? String
+        case rows.birthdayRow, rows.genderRow - 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: commonCellReuseIdentifier,
+                                                     for: indexPath) as! CommonCell
+            cell.titleLabel.text = dataArray[indexPath.row]
             
-            if let text = string {
-                cell.genderLabel.text = text
-            } else {
-                cell.genderLabel.text = gender
+            if indexPath.row == rows.birthdayRow {
+                cell.titleTextLabel.text = userDefault.value(forKey: birthdayKey) as? String
+            } else if indexPath.row == rows.genderRow - 1 {
+                cell.titleTextLabel.text = userDefault.value(forKey: genderKey) as? String
             }
             return cell
-            
         default: break
         }
         return UITableViewCell()
     }
 }
 
+// MARK:- EditControllerDelegate
 extension MainController: EditControllerDelegate {
     func updateUI() {
         tableView.reloadData()
     }
 }
-
-
-
-
-
-
-
-
-
-

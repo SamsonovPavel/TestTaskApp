@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8456C9E91E620B4100C9C104 /* FirstNameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E805841E5F40C200A8B555 /* FirstNameCell.xib */; };
-		8456C9EA1E620C5500C9C104 /* LastNameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E805891E5F443A00A8B555 /* LastNameCell.xib */; };
+		842CF3F41E66E0AD00BB48FE /* FullNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CF3F21E66E0AD00BB48FE /* FullNameCell.swift */; };
+		842CF3F51E66E0AD00BB48FE /* FullNameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842CF3F31E66E0AD00BB48FE /* FullNameCell.xib */; };
+		849B99911E670C3700572803 /* CommonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849B998F1E670C3700572803 /* CommonCell.swift */; };
+		849B99921E670C3700572803 /* CommonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 849B99901E670C3700572803 /* CommonCell.xib */; };
+		84B6C3521E68667100B86750 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6C3511E68667100B86750 /* Helper.swift */; };
 		84E805651E5F252F00A8B555 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E805631E5F252F00A8B555 /* LaunchScreen.storyboard */; };
 		84E805701E5F2BFD00A8B555 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E8056F1E5F2BFD00A8B555 /* Assets.xcassets */; };
 		84E805751E5F2C2200A8B555 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E805731E5F2C2200A8B555 /* AppDelegate.swift */; };
@@ -16,10 +19,6 @@
 		84E805781E5F2C5F00A8B555 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E805771E5F2C5F00A8B555 /* Main.storyboard */; };
 		84E8057C1E5F3ECA00A8B555 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E8057B1E5F3ECA00A8B555 /* Constants.swift */; };
 		84E8057F1E5F3F2500A8B555 /* ViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E8057E1E5F3F2500A8B555 /* ViewControllerProtocol.swift */; };
-		84E805851E5F40C200A8B555 /* FirstNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E805831E5F40C200A8B555 /* FirstNameCell.swift */; };
-		84E8058A1E5F443A00A8B555 /* LastNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E805881E5F443A00A8B555 /* LastNameCell.swift */; };
-		84E8058F1E5F450100A8B555 /* PatronymicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E8058D1E5F450100A8B555 /* PatronymicCell.swift */; };
-		84E805901E5F450100A8B555 /* PatronymicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E8058E1E5F450100A8B555 /* PatronymicCell.xib */; };
 		84E805941E5F46AF00A8B555 /* BirthdayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E805921E5F46AF00A8B555 /* BirthdayCell.swift */; };
 		84E805951E5F46AF00A8B555 /* BirthdayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E805931E5F46AF00A8B555 /* BirthdayCell.xib */; };
 		84E805991E5F485400A8B555 /* GenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E805971E5F485400A8B555 /* GenderCell.swift */; };
@@ -29,6 +28,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		842CF3F21E66E0AD00BB48FE /* FullNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FullNameCell.swift; path = Classes/TableCells/FullNameCell.swift; sourceTree = "<group>"; };
+		842CF3F31E66E0AD00BB48FE /* FullNameCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FullNameCell.xib; path = Classes/TableCells/FullNameCell.xib; sourceTree = "<group>"; };
+		849B998F1E670C3700572803 /* CommonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommonCell.swift; path = Classes/TableCells/CommonCell.swift; sourceTree = "<group>"; };
+		849B99901E670C3700572803 /* CommonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CommonCell.xib; path = Classes/TableCells/CommonCell.xib; sourceTree = "<group>"; };
+		84B6C3511E68667100B86750 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helper.swift; path = Common/Helper.swift; sourceTree = "<group>"; };
 		84E805571E5F252F00A8B555 /* TestTaskApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestTaskApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E805641E5F252F00A8B555 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84E8056F1E5F2BFD00A8B555 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resource/Assets.xcassets; sourceTree = "<group>"; };
@@ -38,12 +42,6 @@
 		84E805771E5F2C5F00A8B555 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Resource/Storyboard/Main.storyboard; sourceTree = "<group>"; };
 		84E8057B1E5F3ECA00A8B555 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Common/Constants.swift; sourceTree = "<group>"; };
 		84E8057E1E5F3F2500A8B555 /* ViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewControllerProtocol.swift; path = Common/ViewControllerProtocol.swift; sourceTree = "<group>"; };
-		84E805831E5F40C200A8B555 /* FirstNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirstNameCell.swift; path = Classes/TableCells/FirstNameCell.swift; sourceTree = "<group>"; };
-		84E805841E5F40C200A8B555 /* FirstNameCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FirstNameCell.xib; path = Classes/TableCells/FirstNameCell.xib; sourceTree = "<group>"; };
-		84E805881E5F443A00A8B555 /* LastNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LastNameCell.swift; path = Classes/TableCells/LastNameCell.swift; sourceTree = "<group>"; };
-		84E805891E5F443A00A8B555 /* LastNameCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LastNameCell.xib; path = Classes/TableCells/LastNameCell.xib; sourceTree = "<group>"; };
-		84E8058D1E5F450100A8B555 /* PatronymicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PatronymicCell.swift; path = Classes/TableCells/PatronymicCell.swift; sourceTree = "<group>"; };
-		84E8058E1E5F450100A8B555 /* PatronymicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PatronymicCell.xib; path = Classes/TableCells/PatronymicCell.xib; sourceTree = "<group>"; };
 		84E805921E5F46AF00A8B555 /* BirthdayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BirthdayCell.swift; path = Classes/TableCells/BirthdayCell.swift; sourceTree = "<group>"; };
 		84E805931E5F46AF00A8B555 /* BirthdayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BirthdayCell.xib; path = Classes/TableCells/BirthdayCell.xib; sourceTree = "<group>"; };
 		84E805971E5F485400A8B555 /* GenderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenderCell.swift; path = Classes/TableCells/GenderCell.swift; sourceTree = "<group>"; };
@@ -63,6 +61,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		842CF3F61E66E0BB00BB48FE /* FullNameCell */ = {
+			isa = PBXGroup;
+			children = (
+				842CF3F21E66E0AD00BB48FE /* FullNameCell.swift */,
+				842CF3F31E66E0AD00BB48FE /* FullNameCell.xib */,
+			);
+			name = FullNameCell;
+			sourceTree = "<group>";
+		};
+		849B99931E670C4000572803 /* CommonCell */ = {
+			isa = PBXGroup;
+			children = (
+				849B998F1E670C3700572803 /* CommonCell.swift */,
+				849B99901E670C3700572803 /* CommonCell.xib */,
+			);
+			name = CommonCell;
+			sourceTree = "<group>";
+		};
 		84E8054E1E5F252F00A8B555 = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				84E8057B1E5F3ECA00A8B555 /* Constants.swift */,
+				84B6C3511E68667100B86750 /* Helper.swift */,
 				84E8057E1E5F3F2500A8B555 /* ViewControllerProtocol.swift */,
 			);
 			name = Common;
@@ -148,40 +165,12 @@
 		84E805821E5F400300A8B555 /* TableCells */ = {
 			isa = PBXGroup;
 			children = (
-				84E805871E5F40E400A8B555 /* FirstNameCell */,
-				84E8058C1E5F446300A8B555 /* LastNameCell */,
-				84E805911E5F450A00A8B555 /* PatronymicCell */,
+				842CF3F61E66E0BB00BB48FE /* FullNameCell */,
+				849B99931E670C4000572803 /* CommonCell */,
 				84E805961E5F46B600A8B555 /* BirthdayCell */,
 				84E8059B1E5F485B00A8B555 /* GenderCell */,
 			);
 			name = TableCells;
-			sourceTree = "<group>";
-		};
-		84E805871E5F40E400A8B555 /* FirstNameCell */ = {
-			isa = PBXGroup;
-			children = (
-				84E805831E5F40C200A8B555 /* FirstNameCell.swift */,
-				84E805841E5F40C200A8B555 /* FirstNameCell.xib */,
-			);
-			name = FirstNameCell;
-			sourceTree = "<group>";
-		};
-		84E8058C1E5F446300A8B555 /* LastNameCell */ = {
-			isa = PBXGroup;
-			children = (
-				84E805881E5F443A00A8B555 /* LastNameCell.swift */,
-				84E805891E5F443A00A8B555 /* LastNameCell.xib */,
-			);
-			name = LastNameCell;
-			sourceTree = "<group>";
-		};
-		84E805911E5F450A00A8B555 /* PatronymicCell */ = {
-			isa = PBXGroup;
-			children = (
-				84E8058D1E5F450100A8B555 /* PatronymicCell.swift */,
-				84E8058E1E5F450100A8B555 /* PatronymicCell.xib */,
-			);
-			name = PatronymicCell;
 			sourceTree = "<group>";
 		};
 		84E805961E5F46B600A8B555 /* BirthdayCell */ = {
@@ -278,13 +267,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8456C9EA1E620C5500C9C104 /* LastNameCell.xib in Resources */,
-				8456C9E91E620B4100C9C104 /* FirstNameCell.xib in Resources */,
 				84E805781E5F2C5F00A8B555 /* Main.storyboard in Resources */,
-				84E805901E5F450100A8B555 /* PatronymicCell.xib in Resources */,
 				84E805651E5F252F00A8B555 /* LaunchScreen.storyboard in Resources */,
 				84E805701E5F2BFD00A8B555 /* Assets.xcassets in Resources */,
+				842CF3F51E66E0AD00BB48FE /* FullNameCell.xib in Resources */,
 				84E8059A1E5F485400A8B555 /* GenderCell.xib in Resources */,
+				849B99921E670C3700572803 /* CommonCell.xib in Resources */,
 				84E805951E5F46AF00A8B555 /* BirthdayCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,16 +284,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84E8058A1E5F443A00A8B555 /* LastNameCell.swift in Sources */,
+				84B6C3521E68667100B86750 /* Helper.swift in Sources */,
+				842CF3F41E66E0AD00BB48FE /* FullNameCell.swift in Sources */,
 				84E8057F1E5F3F2500A8B555 /* ViewControllerProtocol.swift in Sources */,
 				84E8059D1E5F61A300A8B555 /* ParentClass.swift in Sources */,
 				84E805751E5F2C2200A8B555 /* AppDelegate.swift in Sources */,
 				84E805991E5F485400A8B555 /* GenderCell.swift in Sources */,
 				84E805761E5F2C2200A8B555 /* MainController.swift in Sources */,
 				84E805941E5F46AF00A8B555 /* BirthdayCell.swift in Sources */,
-				84E805851E5F40C200A8B555 /* FirstNameCell.swift in Sources */,
-				84E8058F1E5F450100A8B555 /* PatronymicCell.swift in Sources */,
 				84E805A01E5F702D00A8B555 /* EditController.swift in Sources */,
+				849B99911E670C3700572803 /* CommonCell.swift in Sources */,
 				84E8057C1E5F3ECA00A8B555 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

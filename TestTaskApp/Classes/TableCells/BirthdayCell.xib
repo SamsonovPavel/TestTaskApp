@@ -11,44 +11,31 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BirthdayCell" id="yjj-mM-0p6" customClass="BirthdayCell" customModule="TestTaskApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="580" height="51"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BirthdayCell" rowHeight="273" id="yjj-mM-0p6" customClass="BirthdayCell" customModule="TestTaskApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="520" height="270"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yjj-mM-0p6" id="kdR-4l-fmy">
-                <rect key="frame" x="0.0" y="0.0" width="580" height="51"/>
+                <rect key="frame" x="0.0" y="0.0" width="520" height="269"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата рождения" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvr-g0-sPn">
-                        <rect key="frame" x="20" y="0.0" width="180" height="50"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="180" id="i39-Kv-fNH"/>
-                            <constraint firstAttribute="height" constant="50" id="kHX-f7-Mvf"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.05.1992" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7GU-9P-LHh">
-                        <rect key="frame" x="200" y="0.0" width="370" height="50"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                        <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="gDE-JB-Os5">
+                        <rect key="frame" x="0.0" y="0.0" width="520" height="269"/>
+                        <date key="date" timeIntervalSinceReferenceDate="510077414.48411697">
+                            <!--2017-03-01 16:10:14 +0000-->
+                        </date>
+                    </datePicker>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="7GU-9P-LHh" secondAttribute="trailing" constant="10" id="1Z3-6n-NSZ"/>
-                    <constraint firstAttribute="bottom" secondItem="7GU-9P-LHh" secondAttribute="bottom" id="FbD-fg-Xsb"/>
-                    <constraint firstAttribute="bottom" secondItem="fvr-g0-sPn" secondAttribute="bottom" id="HST-vs-jok"/>
-                    <constraint firstItem="7GU-9P-LHh" firstAttribute="leading" secondItem="fvr-g0-sPn" secondAttribute="trailing" id="Nrp-A2-7Zn"/>
-                    <constraint firstItem="fvr-g0-sPn" firstAttribute="leading" secondItem="kdR-4l-fmy" secondAttribute="leading" constant="20" id="P8T-Up-Lai"/>
-                    <constraint firstItem="fvr-g0-sPn" firstAttribute="top" secondItem="kdR-4l-fmy" secondAttribute="top" id="lqS-IM-5qN"/>
-                    <constraint firstItem="7GU-9P-LHh" firstAttribute="top" secondItem="kdR-4l-fmy" secondAttribute="top" id="sSa-nb-sAs"/>
+                    <constraint firstItem="gDE-JB-Os5" firstAttribute="top" secondItem="kdR-4l-fmy" secondAttribute="top" id="Agr-8A-4G5"/>
+                    <constraint firstItem="gDE-JB-Os5" firstAttribute="leading" secondItem="kdR-4l-fmy" secondAttribute="leading" id="ISG-MW-WNq"/>
+                    <constraint firstAttribute="bottom" secondItem="gDE-JB-Os5" secondAttribute="bottom" id="Ndy-jk-BU2"/>
+                    <constraint firstAttribute="trailing" secondItem="gDE-JB-Os5" secondAttribute="trailing" id="Pfj-E2-kmb"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="birthdayLabel" destination="7GU-9P-LHh" id="2g9-bW-8jn"/>
+                <outlet property="datePicker" destination="gDE-JB-Os5" id="kcl-2H-JVd"/>
             </connections>
-            <point key="canvasLocation" x="-7" y="-30"/>
+            <point key="canvasLocation" x="-50" y="-54"/>
         </tableViewCell>
     </objects>
 </document>

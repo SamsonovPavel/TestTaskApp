@@ -11,23 +11,23 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PatronymicCell" id="nBe-zs-qxP" customClass="PatronymicCell" customModule="TestTaskApp" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FullNameCell" id="5U1-Ma-Ah1" customClass="FullNameCell" customModule="TestTaskApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="580" height="51"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nBe-zs-qxP" id="vg5-NO-XAa">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5U1-Ma-Ah1" id="Q00-nr-nz4">
                 <rect key="frame" x="0.0" y="0.0" width="580" height="50"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Отчество" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lK-uu-fUm">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZQ-Ys-QG3">
                         <rect key="frame" x="20" y="0.0" width="100" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="100" id="WM6-o8-U5k"/>
+                            <constraint firstAttribute="width" constant="100" id="QnC-Mc-94G"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" scrollEnabled="NO" text="Иванович" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="qoq-Dl-7is">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" scrollEnabled="NO" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="zzb-dC-cYl">
                         <rect key="frame" x="120" y="4" width="450" height="44"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -36,19 +36,20 @@
                     </textView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="qoq-Dl-7is" secondAttribute="trailing" constant="10" id="1kK-zV-niv"/>
-                    <constraint firstItem="qoq-Dl-7is" firstAttribute="leading" secondItem="4lK-uu-fUm" secondAttribute="trailing" id="3wI-kL-8L8"/>
-                    <constraint firstItem="4lK-uu-fUm" firstAttribute="leading" secondItem="vg5-NO-XAa" secondAttribute="leading" constant="20" id="ClB-Ge-fWY"/>
-                    <constraint firstAttribute="bottom" secondItem="qoq-Dl-7is" secondAttribute="bottom" constant="2" id="Xog-IC-Wfk"/>
-                    <constraint firstItem="qoq-Dl-7is" firstAttribute="top" secondItem="vg5-NO-XAa" secondAttribute="top" constant="4" id="aNG-lw-XIa"/>
-                    <constraint firstAttribute="bottom" secondItem="4lK-uu-fUm" secondAttribute="bottom" id="fvM-te-Tdk"/>
-                    <constraint firstItem="4lK-uu-fUm" firstAttribute="top" secondItem="vg5-NO-XAa" secondAttribute="top" id="xqy-wR-mfi"/>
+                    <constraint firstItem="eZQ-Ys-QG3" firstAttribute="top" secondItem="Q00-nr-nz4" secondAttribute="top" id="Fvx-N7-40w"/>
+                    <constraint firstItem="zzb-dC-cYl" firstAttribute="top" secondItem="Q00-nr-nz4" secondAttribute="top" constant="4" id="PY1-ef-Bb4"/>
+                    <constraint firstItem="zzb-dC-cYl" firstAttribute="leading" secondItem="eZQ-Ys-QG3" secondAttribute="trailing" id="Zcp-cI-YTu"/>
+                    <constraint firstAttribute="bottom" secondItem="eZQ-Ys-QG3" secondAttribute="bottom" id="hFt-I1-MlT"/>
+                    <constraint firstAttribute="trailing" secondItem="zzb-dC-cYl" secondAttribute="trailing" constant="10" id="pD0-Ox-h6I"/>
+                    <constraint firstItem="eZQ-Ys-QG3" firstAttribute="leading" secondItem="Q00-nr-nz4" secondAttribute="leading" constant="20" id="tT8-HS-KVf"/>
+                    <constraint firstAttribute="bottom" secondItem="zzb-dC-cYl" secondAttribute="bottom" constant="2" id="vxd-Gw-KfM"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="textView" destination="qoq-Dl-7is" id="VtQ-BZ-AxN"/>
+                <outlet property="textView" destination="zzb-dC-cYl" id="OQ7-sb-DHQ"/>
+                <outlet property="title" destination="eZQ-Ys-QG3" id="iYH-jL-0JD"/>
             </connections>
-            <point key="canvasLocation" x="-23" y="-28.5"/>
+            <point key="canvasLocation" x="-47" y="-18"/>
         </tableViewCell>
     </objects>
 </document>
